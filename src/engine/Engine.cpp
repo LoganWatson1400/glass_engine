@@ -1,4 +1,4 @@
 #include "engine/Engine.h"
 
-void Engine::update() {}
+bool Engine::update() {return false;}
 void Engine::run() {}

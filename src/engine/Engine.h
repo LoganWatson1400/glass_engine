@@ -1,3 +1,5 @@
+#pragma once
+
 #include "world/SceneTree.h"
 
 class Engine{
@@ -6,6 +8,6 @@ public:
     bool running = true;
 
     void run();
-    void update();
+    bool update();
 
 };

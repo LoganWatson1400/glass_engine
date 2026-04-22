@@ -22,3 +22,13 @@ TEST_CASE("Engine run can be called without crashing") {
 
     SUCCEED();
 }
+
+// TEST_CASE("Engine updates propogate down the scene tree"){
+//     Engine engine;
+
+//     auto child = std::make_unique<GameObject>();
+//     GameObject* childPtr = child.get();
+//     engine.scene.addChild(std::move(child));
+
+//     REQUIRE(engine.update() == true);
+// }

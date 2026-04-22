@@ -1,12 +1,11 @@
-#include "world/GameObject.h"
+#pragma once
+#include "GameObject.h"
 
-class SceneTree {
+class SceneTree
+{
 public:
     GameObject root;
 
-    void addChild(std::unique_ptr<GameObject> obj) {
-        root.addChild(std::move(obj));
-    }
-
-    void getChildrenCount(){}
+    GameObject* getRoot();
+    void addChild(std::unique_ptr<GameObject> child);
 };

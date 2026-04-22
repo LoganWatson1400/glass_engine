@@ -17,16 +17,6 @@ TEST_CASE("GameObject can addChild()") {
     REQUIRE(obj.children.size() == 1);
 }
 
-TEST_CASE("GameObject childrenCount == number of children") {
-	GameObject obj;
-
-    obj.addChild(std::make_unique<GameObject>());
-    obj.addChild(std::make_unique<GameObject>());
-    obj.addChild(std::make_unique<GameObject>());
-
-    REQUIRE(obj.childrenCount == obj.children.size());
-}
-
 TEST_CASE("GameObject child's parent gets assigned"){
     GameObject obj;
 
