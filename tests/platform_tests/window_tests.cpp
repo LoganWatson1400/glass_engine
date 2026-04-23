@@ -1,21 +1,29 @@
+
+
 #include <catch2/catch_all.hpp>
 #include "platform/Window.h"
 
-TEST_CASE("Window initializes to (500, 500)"){
+TEST_CASE("Window has default dimensions") {
     Window window;
-    
-    REQUIRE(window.x == 0);
-    REQUIRE(window.y == 0);
+    REQUIRE(window.width  == 800);
+    REQUIRE(window.height == 600);
 }
 
-TEST_CASE("Window opens cleanly"){
-   Window window;
-   window.open();
-   SUCCEED();
+TEST_CASE("Window is closed before init") {
+    Window window;
+    REQUIRE(window.isOpen() == false);
 }
 
-TEST_CASE("Window closes cleanly"){
-   Window window;
-   window.close(); 
-   SUCCEED();
+// Integration test: requires a display. Returns false gracefully in headless env.
+TEST_CASE("Window can init") {
+    Window window;
+    window.init();
+    SUCCEED();
+}
+
+TEST_CASE("Window is closed after close()") {
+    Window window;
+    window.init();
+    window.close();
+    REQUIRE(window.isOpen() == false);
 }

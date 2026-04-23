@@ -1,4 +1,3 @@
-// src/main.cpp
 #include "engine/Engine.h"
 
 int main()

@@ -1,15 +1,17 @@
 #pragma once
-
-#include "config/config.h"
+#include <SDL2/SDL.h>
 
 class Window {
+    SDL_Window*   sdlWindow = nullptr;
+    SDL_GLContext glContext  = nullptr;
 public:
-    int x = DEFAULT_WINDOW_WIDTH;
-    int y = DEFAULT_WINDOW_HEIGHT;
-    bool is_open = true;
+    int  width   = 800;
+    int  height  = 600;
+    bool is_open = false;
 
-    void open();
+    bool init();        // create window + GL context; returns false on failure
     void close();
-    bool isOpen();
-    void poll();
+    bool isOpen() const;
+    void poll();        // process OS events (sets is_open=false on quit/Escape)
+    void swap();        // swap front/back buffers
 };
