@@ -1,26 +1,16 @@
 #include <catch2/catch_all.hpp>
-#include "rendering/Camera.h"
+#include "world/objects/Camera.h"
 #include <glm/glm.hpp>
 
-TEST_CASE("Camera starts at origin") {
+TEST_CASE("Camera is a Node3D")
+{
     Camera camera;
-    REQUIRE(camera.x == 0.0f);
-    REQUIRE(camera.y == 0.0f);
-    REQUIRE(camera.z == 0.0f);
+    REQUIRE(dynamic_cast<Node3D*>(&camera) != nullptr);
 }
-
-TEST_CASE("Camera move updates position") {
-    Camera camera;
-    camera.move(1.0f, 2.0f, 3.0f);
-    REQUIRE(camera.x == 1.0f);
-    REQUIRE(camera.y == 2.0f);
-    REQUIRE(camera.z == 3.0f);
-}
-
 TEST_CASE("Camera view matrix changes when camera moves") {
     Camera at_origin;
     Camera moved;
-    moved.move(0.0f, 0.0f, 5.0f);
+    moved.translate({0.0f, 0.0f, 5.0f});
     REQUIRE(at_origin.getViewMatrix() != moved.getViewMatrix());
 }
 

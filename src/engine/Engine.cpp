@@ -13,7 +13,7 @@ void Engine::run()
     if (!renderer.init()) return;
 
     // Pull camera back so the cube is fully visible
-    camera.move(0.0f, 0.5f, 3.0f);
+    camera.translate({0.0f, 0.5f, 3.0f});
 
     running = true;
     while (running && window.isOpen()) {

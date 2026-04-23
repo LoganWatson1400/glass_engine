@@ -1,6 +1,6 @@
 #include <catch2/catch_all.hpp>
 #include "rendering/Renderer.h"
-#include "rendering/Camera.h"
+#include "world/objects/Camera.h"
 
 // Renderer is safe to call before init() - all methods are no-ops
 TEST_CASE("Renderer does not crash when uninitialized") {

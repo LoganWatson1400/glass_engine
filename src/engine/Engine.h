@@ -1,7 +1,7 @@
 #pragma once
 #include "platform/Window.h"
 #include "rendering/Renderer.h"
-#include "rendering/Camera.h"
+#include "world/objects/Camera.h"
 #include "world/SceneTree.h"
 
 class Engine {

@@ -1,14 +1,10 @@
 #pragma once
+#include "world/nodes/Node3D.h"
 #include <glm/glm.hpp>
 
-class Camera {
+class Camera : public Node3D {
 public:
-    float x   = 0.0f;
-    float y   = 0.0f;
-    float z   = 0.0f;
     float fov = 45.0f;
-
-    void move(float dx, float dy, float dz);
 
     glm::mat4 getViewMatrix() const;
     glm::mat4 getProjectionMatrix(float aspectRatio) const;

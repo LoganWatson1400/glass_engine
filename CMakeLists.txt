@@ -17,10 +17,12 @@ find_package(glm    REQUIRED)
 
 add_library(glass_engine_lib
     src/engine/Engine.cpp
-    src/world/GameObject.cpp
+    src/world/nodes/Node.cpp
+    src/world/nodes/Node3D.cpp
+    src/world/objects/Camera.cpp
     src/world/SceneTree.cpp
+    src/world/Transform.cpp
     src/rendering/Renderer.cpp
-    src/rendering/Camera.cpp
     src/rendering/Mesh.cpp
     src/rendering/Shader.cpp
     src/platform/Window.cpp
@@ -39,9 +41,9 @@ target_link_libraries(glass_engine PRIVATE glass_engine_lib)
 add_executable(tests
     tests/engine_tests/engine_tests.cpp
     tests/main_tests/test_main.cpp
-    tests/world_tests/gameobject_tests.cpp
+    tests/world_tests/node_tests.cpp
     tests/world_tests/scene_tests.cpp
-    tests/rendering_tests/camera_tests.cpp
+    tests/world_tests/object_tests/camera_tests.cpp
     tests/rendering_tests/renderer_tests.cpp
     tests/rendering_tests/mesh_tests.cpp
     tests/platform_tests/window_tests.cpp
