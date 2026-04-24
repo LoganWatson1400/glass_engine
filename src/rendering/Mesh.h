@@ -2,16 +2,30 @@
 #include <vector>
 #include <GL/glew.h>
 
+/// @brief GPU mesh resource. Upload once, draw many times.
+/// Owns VAO/VBO call free() before GL context is destroyed.
 class Mesh {
 public:
-    std::vector<float> vertices; // flat array: x,y,z per vertex
-
+    std::vector<float> vertices;
     GLuint vao = 0;
     GLuint vbo = 0;
 
-    void upload();      // send vertex data to the GPU
-    void free();        // release GPU resources (call before GL context destroyed)
+    /// @brief Upload vertex data to the GPU.
+    void upload();
+
+    /// @brief Release GPU resources.
+    void free();
+
+    /// @brief Draw the mesh. Requires upload() to have been called first.
     void draw() const;
 
-    static Mesh makeCube();
+    /// @brief Returns true if the mesh has been uploaded to the GPU.
+    bool isUploaded() const { return vao != 0; }
 };
+
+/// @brief primitive meshes.
+namespace Primitives {
+    Mesh cube();
+    Mesh plane();
+    Mesh sphere();
+}

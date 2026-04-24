@@ -1,10 +1,9 @@
 #include "rendering/Renderer.h"
 #include <GL/glew.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <SDL2/SDL.h>
 
 // ---------------------------------------------------------------------------
-// Shaders are embedded as raw string literals
+// Shaders embedded as raw string literals
 // ---------------------------------------------------------------------------
 
 static const char* VERT_SRC = R"glsl(
@@ -41,16 +40,12 @@ bool Renderer::init()
     if (!shader.compile(VERT_SRC, FRAG_SRC))
         return false;
 
-    cube = Mesh::makeCube();
-    cube.upload();
-
     ready = true;
     return true;
 }
 
 void Renderer::shutdown()
 {
-    cube.free();
     shader.free();
     ready = false;
 }
@@ -62,24 +57,30 @@ void Renderer::clear()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::draw(const Camera& camera, int width, int height)
+void Renderer::draw(const SceneTree& scene, const Camera& camera, int width, int height)
 {
     if (!ready) return;
 
     float aspect = (height > 0) ? (float)width / (float)height : 1.0f;
 
-    // Rotate the cube over time so it's visually obvious it's 3D
-    float t     = SDL_GetTicks() / 1000.0f;
-    glm::mat4 model = glm::rotate(
-        glm::mat4(1.0f),
-        t,
-        glm::vec3(0.5f, 1.0f, 0.0f)
-    );
-
     shader.use();
-    shader.setMat4("model",      model);
     shader.setMat4("view",       camera.getViewMatrix());
     shader.setMat4("projection", camera.getProjectionMatrix(aspect));
 
-    cube.draw();
+    drawNode(scene.root, camera, aspect);
+}
+
+void Renderer::drawNode(const Node& node, const Camera& camera, float aspect)
+{
+    if (const auto* mi = dynamic_cast<const MeshInstance*>(&node))
+    {
+        if (mi->visible && mi->mesh.isUploaded())
+        {
+            shader.setMat4("model", mi->getWorldTransform());
+            mi->mesh.draw();
+        }
+    }
+
+    for (const auto& child : node.children)
+        drawNode(*child, camera, aspect);
 }

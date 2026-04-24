@@ -1,21 +1,53 @@
 #include <catch2/catch_all.hpp>
 #include "rendering/Renderer.h"
 #include "world/objects/Camera.h"
+#include "world/objects/MeshInstance.h"
+#include "world/SceneTree.h"
 
-// Renderer is safe to call before init() - all methods are no-ops
-TEST_CASE("Renderer does not crash when uninitialized") {
-    Renderer renderer;
-    Camera   camera;
+TEST_CASE("Renderer does not crash when uninitialized")
+{
+    Renderer  renderer;
+    SceneTree scene;
+    Camera    camera;
+
     renderer.clear();
-    renderer.draw(camera, 800, 600);
+    renderer.draw(scene, camera, 800, 600);
+    SUCCEED();
+}
+
+TEST_CASE("Renderer draws empty scene without crashing")
+{
+    Renderer  renderer;
+    SceneTree scene;
+    Camera    camera;
+
+    renderer.clear();
+    renderer.draw(scene, camera, 800, 600);
+    SUCCEED();
+}
+
+TEST_CASE("Renderer draws scene with a MeshInstance without crashing")
+{
+    Renderer  renderer;
+    SceneTree scene;
+    Camera    camera;
+
+    auto mi = std::make_unique<MeshInstance>();
+    mi->mesh = Primitives::cube();
+    // deliberately not calling upload() - mesh.isUploaded() == false
+    // renderer should skip it gracefully
+    scene.addChild(std::move(mi));
+
+    renderer.clear();
+    renderer.draw(scene, camera, 800, 600);
     SUCCEED();
 }
 
 // Integration test: requires a real display.
-// Skipped automatically in headless environments (init returns false).
-TEST_CASE("Renderer initializes with a valid GL context") {
+// Passes trivially in headless environments since init() returns false gracefully.
+TEST_CASE("Renderer initializes with a valid GL context")
+{
     Renderer renderer;
-    // init() will return false in headless CI - that is handled gracefully
     renderer.init();
     SUCCEED();
 }

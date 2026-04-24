@@ -10,7 +10,16 @@ void SceneTree::addChild(std::unique_ptr<Node> child)
     root.addChild(std::move(child));
 }
 
+static void updateNode(Node& node, float deltaTime)
+{
+    node.onUpdate(deltaTime);
+    for (auto& child : node.children)
+        updateNode(*child, deltaTime);
+}
+
+/// @brief Updates all nodes in pre-order
+/// @param deltaTime 
 void SceneTree::update(float deltaTime)
 {
-    // TODO: walk tree recursively and call onUpdate(deltaTime) on each node
+    updateNode(root, deltaTime);
 }

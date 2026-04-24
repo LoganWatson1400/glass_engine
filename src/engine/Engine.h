@@ -3,6 +3,7 @@
 #include "rendering/Renderer.h"
 #include "world/objects/Camera.h"
 #include "world/SceneTree.h"
+#include <SDL2/SDL.h>
 
 class Engine {
 public:
@@ -10,8 +11,12 @@ public:
     Renderer  renderer;
     Camera    camera;
     SceneTree scene;
-    bool      running = true;
+    bool      running       = true;
+    float     lastDeltaTime = 0.0f;
 
     void run();
-    bool update();  // return true to keep loop alive, false to quit
+    bool update();
+
+private:
+    float getDeltaTime();
 };

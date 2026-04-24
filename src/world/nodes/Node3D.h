@@ -6,6 +6,9 @@
 /// @brief A scene node with a full 3D transform (position, rotation, scale).
 class Node3D : public Node {
 public:
+    /// @brief True if this instance and children should be drawn.
+    bool visible = true;
+
     Transform transform;
 
     glm::mat4 getWorldTransform() const;
