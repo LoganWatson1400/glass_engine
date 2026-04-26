@@ -13,7 +13,7 @@ static GLuint compileStage(GLenum type, const char* src)
     if (!ok) {
         char log[512];
         glGetShaderInfoLog(s, sizeof(log), nullptr, log);
-        std:cerr << "Shader compile error:"
+        std::cerr << "Shader compile error:"
                 << std::endl
                 << log
                 << std::endl;
@@ -40,7 +40,7 @@ bool Shader::compile(const char* vertSrc, const char* fragSrc)
     if (!ok) {
         char log[512];
         glGetProgramInfoLog(id, sizeof(log), nullptr, log);
-        std:cerr << "Shader link error:"
+        std::cerr << "Shader link error:"
                 << std::endl
                 << log
                 << std::endl;

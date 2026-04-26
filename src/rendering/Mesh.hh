@@ -2,35 +2,35 @@
 #ifndef GLASS_ENGINE_MESH_HH
 #define GLASS_ENGINE_MESH_HH
 
-#include <vector>
-#include <GL/glew.h>
+    #include <vector>
+    #include <GL/glew.h>
 
-/// @brief GPU mesh resource. Upload once, draw many times.
-/// Owns VAO/VBO call free() before GL context is destroyed.
-class Mesh {
-    public:
-        std::vector<float> vertices;
-        GLuint vao = 0;
-        GLuint vbo = 0;
+    /// @brief GPU mesh resource. Upload once, draw many times.
+    /// Owns VAO/VBO call free() before GL context is destroyed.
+    class Mesh {
+        public:
+            std::vector<float> vertices;
+            GLuint vao = 0;
+            GLuint vbo = 0;
 
-        /// @brief Upload vertex data to the GPU.
-        void upload();
+            /// @brief Upload vertex data to the GPU.
+            void upload();
 
-        /// @brief Release GPU resources.
-        void free();
+            /// @brief Release GPU resources.
+            void free();
 
-        /// @brief Draw the mesh. Requires upload() to have been called first.
-        void draw() const;
+            /// @brief Draw the mesh. Requires upload() to have been called first.
+            void draw() const;
 
-        /// @brief Returns true if the mesh has been uploaded to the GPU.
-        bool isUploaded() const { return vao != 0; }
-};
+            /// @brief Returns true if the mesh has been uploaded to the GPU.
+            bool isUploaded() const { return vao != 0; }
+    }; //CLASS Mesh
 
-/// @brief primitive meshes.
-namespace Primitives {
-    Mesh cube();
-    Mesh plane();
-    Mesh sphere();
-}
+    /// @brief primitive meshes.
+    namespace Primitives {
+        Mesh cube();
+        Mesh plane();
+        Mesh sphere();
+    } //NAMESPACE Primitives
 
 #endif //GLASS_ENGINE_MESH_HH
