@@ -1,6 +1,6 @@
 #include "rendering/Shader.hh"
 #include <glm/gtc/type_ptr.hpp>
-#include <cstdio>
+#include <iostream>
 
 static GLuint compileStage(GLenum type, const char* src)
 {
@@ -13,7 +13,11 @@ static GLuint compileStage(GLenum type, const char* src)
     if (!ok) {
         char log[512];
         glGetShaderInfoLog(s, sizeof(log), nullptr, log);
-        printf("Shader compile error:\n%s\n", log);
+        std:cerr << "Shader compile error:"
+                << std::endl
+                << log
+                << std::endl;
+
         glDeleteShader(s);
         return 0;
     }
@@ -36,7 +40,11 @@ bool Shader::compile(const char* vertSrc, const char* fragSrc)
     if (!ok) {
         char log[512];
         glGetProgramInfoLog(id, sizeof(log), nullptr, log);
-        printf("Shader link error:\n%s\n", log);
+        std:cerr << "Shader link error:"
+                << std::endl
+                << log
+                << std::endl;
+
         glDeleteProgram(id);
         id = 0;
     }
