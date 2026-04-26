@@ -33,10 +33,10 @@ target_link_libraries(imgui PUBLIC SDL2::SDL2 OpenGL::GL)
 
 # Engine library
 file(GLOB_RECURSE ENGINE_SOURCES
-    src/engine/*.cpp
-    src/world/*.cpp
-    src/rendering/*.cpp
-    src/platform/*.cpp
+    src/engine/*.cc
+    src/world/*.cc
+    src/rendering/*.cc
+    src/platform/*.cc
 )
 add_library(glass_engine_lib ${ENGINE_SOURCES})
 target_include_directories(glass_engine_lib PUBLIC src)
@@ -48,18 +48,18 @@ target_link_libraries(glass_engine_lib PUBLIC
 )
 
 # Game
-add_executable(glass_engine src/main.cpp)
+add_executable(glass_engine src/main.cc)
 target_link_libraries(glass_engine PRIVATE glass_engine_lib)
 
 # Editor
-# file(GLOB_RECURSE EDITOR_SOURCES editor/*.cpp)
+# file(GLOB_RECURSE EDITOR_SOURCES editor/*.cc)
 # add_executable(glass_editor ${EDITOR_SOURCES})
 # target_include_directories(glass_editor PRIVATE editor)
 # target_link_libraries(glass_editor PRIVATE glass_engine_lib imgui)
 
 
 # Tests
-file(GLOB_RECURSE TEST_SOURCES tests/*.cpp)
+file(GLOB_RECURSE TEST_SOURCES tests/*.cc)
 add_executable(tests ${TEST_SOURCES})
 target_include_directories(tests PRIVATE editor)
 target_link_libraries(tests PRIVATE glass_engine_lib Catch2::Catch2WithMain)
