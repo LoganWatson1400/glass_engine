@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_SCENETREE_HH
+#define GLASS_ENGINE_SCENETREE_HH
+
 #include "world/nodes/Node.hh"
 
 class SceneTree
@@ -16,3 +19,5 @@ public:
     /// @param deltaTime Seconds since the last frame.
     void update(float deltaTime);
 };
+
+#endif //GLASS_ENGINE_SCENETREE_HH

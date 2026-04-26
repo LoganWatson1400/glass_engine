@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_ENGINE_HH
+#define GLASS_ENGINE_ENGINE_HH
+
 #include "platform/Window.hh"
 #include "rendering/Renderer.hh"
 #include "world/objects/Camera.hh"
@@ -20,3 +23,5 @@ public:
 private:
     float getDeltaTime();
 };
+
+#endif //GLASS_ENGINE_ENGINE_HH

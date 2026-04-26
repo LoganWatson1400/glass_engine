@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_WINDOW_HH
+#define GLASS_ENGINE_WINDOW_HH
+
 #include <SDL2/SDL.h>
 
 class Window {
@@ -15,3 +18,5 @@ public:
     void poll();        // process OS events (sets is_open=false on quit/Escape)
     void swap();        // swap front/back buffers
 };
+
+#endif //GLASS_ENGINE_WINDOW_HH

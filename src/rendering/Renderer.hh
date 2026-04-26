@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_RENDERER_HH
+#define GLASS_ENGINE_RENDERER_HH
+
 #include "world/objects/Camera.hh"
 #include "world/objects/MeshInstance.hh"
 #include "world/SceneTree.hh"
@@ -29,3 +32,5 @@ public:
     /// @param height   Viewport height in pixels.
     void draw(const SceneTree& scene, const Camera& camera, int width, int height);
 };
+
+#endif //GLASS_ENGINE_RENDERER_HH

@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_CAMERA_HH
+#define GLASS_ENGINE_CAMERA_HH
+
 #include "world/nodes/Node3D.hh"
 #include <glm/glm.hpp>
 
@@ -9,3 +12,5 @@ public:
     glm::mat4 getViewMatrix() const;
     glm::mat4 getProjectionMatrix(float aspectRatio) const;
 };
+
+#endif //GLASS_ENGINE_CAMERA_HH

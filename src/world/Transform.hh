@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_TRANSFORM_HH
+#define GLASS_ENGINE_TRANSFORM_HH
+
 #include <glm/glm.hpp>
 
 struct Transform
@@ -9,3 +12,5 @@ struct Transform
 
     glm::mat4 toMatrix() const;
 };
+
+#endif //GLASS_ENGINE_TRANSFORM_HH

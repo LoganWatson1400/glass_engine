@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_MESHINSTANCE_HH
+#define GLASS_ENGINE_MESHINSTANCE_HH
+
 #include "world/nodes/Node3D.hh"
 #include "rendering/Mesh.hh"
 
@@ -7,3 +10,5 @@ class MeshInstance : public Node3D {
 public:
     Mesh mesh;
 };
+
+#endif //GLASS_ENGINE_MESHINSTANCE_HH

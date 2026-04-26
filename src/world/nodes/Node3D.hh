@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_NODE3D_HH
+#define GLASS_ENGINE_NODE3D_HH
+
 #include "world/nodes/Node.hh"
 #include "world/Transform.hh"
 #include <glm/glm.hpp>
@@ -17,3 +20,5 @@ public:
     void rotate(glm::vec3 delta)    { transform.rotation    += delta; }
     void scale(glm::vec3 delta)     { transform.scale       += delta; }
 };
+
+#endif //GLASS_ENGINE_NODE3D_HH

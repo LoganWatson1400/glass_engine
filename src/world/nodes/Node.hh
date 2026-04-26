@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef GLASS_ENGINE_NODE_HH
+#define GLASS_ENGINE_NODE_HH
+
 #include <vector>
 #include <memory>
 #include <string>
@@ -24,3 +27,5 @@ public:
 
     virtual ~Node() = default;
 };
+
+#endif //GLASS_ENGINE_NODE_HH
