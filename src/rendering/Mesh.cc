@@ -1,4 +1,4 @@
-#include "rendering/Mesh.h"
+#include "rendering/Mesh.hh"
 
 static const float CUBE_VERTS[] = {
     // Front

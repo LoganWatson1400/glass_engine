@@ -1,6 +1,6 @@
 #pragma once
-#include "world/nodes/Node.h"
-#include "world/Transform.h"
+#include "world/nodes/Node.hh"
+#include "world/Transform.hh"
 #include <glm/glm.hpp>
 
 /// @brief A scene node with a full 3D transform (position, rotation, scale).

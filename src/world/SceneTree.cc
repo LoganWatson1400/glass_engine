@@ -1,4 +1,4 @@
-#include "world/SceneTree.h"
+#include "world/SceneTree.hh"
 
 Node* SceneTree::getRoot()
 {

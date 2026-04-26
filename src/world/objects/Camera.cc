@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Camera.hh"
 #include <glm/gtc/matrix_transform.hpp>
 
 glm::mat4 Camera::getViewMatrix() const

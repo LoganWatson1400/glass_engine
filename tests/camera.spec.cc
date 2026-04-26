@@ -1,5 +1,5 @@
 #include <catch2/catch_all.hpp>
-#include "world/objects/Camera.h"
+#include "world/objects/Camera.hh"
 #include <glm/glm.hpp>
 
 TEST_CASE("Camera is a Node3D")

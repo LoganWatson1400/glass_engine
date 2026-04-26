@@ -1,4 +1,4 @@
-#include "world/Transform.h"
+#include "world/Transform.hh"
 #include <glm/gtc/matrix_transform.hpp>
 
 glm::mat4 Transform::toMatrix() const

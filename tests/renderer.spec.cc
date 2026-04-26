@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include "rendering/Renderer.h"
-#include "world/objects/Camera.h"
-#include "world/objects/MeshInstance.h"
-#include "world/SceneTree.h"
+#include "rendering/Renderer.hh"
+#include "world/objects/Camera.hh"
+#include "world/objects/MeshInstance.hh"
+#include "world/SceneTree.hh"
 
 TEST_CASE("Renderer does not crash when uninitialized")
 {

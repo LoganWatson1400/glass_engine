@@ -1,5 +1,5 @@
-#include "world/SceneTree.h"
-#include "world/nodes/Node.h"
+#include "world/SceneTree.hh"
+#include "world/nodes/Node.hh"
 #include <catch2/catch_all.hpp>
 // #include <vector>
 // #include <string>

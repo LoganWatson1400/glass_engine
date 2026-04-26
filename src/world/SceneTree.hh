@@ -1,5 +1,5 @@
 #pragma once
-#include "world/nodes/Node.h"
+#include "world/nodes/Node.hh"
 
 class SceneTree
 {

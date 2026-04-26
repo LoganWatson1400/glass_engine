@@ -1,5 +1,5 @@
 #pragma once
-#include "world/nodes/Node3D.h"
+#include "world/nodes/Node3D.hh"
 #include <glm/glm.hpp>
 
 class Camera : public Node3D {

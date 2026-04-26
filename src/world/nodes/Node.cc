@@ -1,4 +1,4 @@
-#include "world/nodes/Node.h"
+#include "world/nodes/Node.hh"
 
 void Node::addChild(std::unique_ptr<Node> child)
 {

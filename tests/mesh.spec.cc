@@ -1,5 +1,5 @@
 #include <catch2/catch_all.hpp>
-#include "rendering/Mesh.h"
+#include "rendering/Mesh.hh"
 
 TEST_CASE("Primitives::cube() has 36 vertices")
 {

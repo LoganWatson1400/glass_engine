@@ -1,5 +1,5 @@
-#include "world/nodes/Node.h"
-#include "world/nodes/Node3D.h"
+#include "world/nodes/Node.hh"
+#include "world/nodes/Node3D.hh"
 #include <catch2/catch_all.hpp>
 
 // ---------------------------------------------------------------------------

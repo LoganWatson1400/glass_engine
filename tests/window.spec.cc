@@ -1,7 +1,7 @@
 
 
 #include <catch2/catch_all.hpp>
-#include "platform/Window.h"
+#include "platform/Window.hh"
 
 TEST_CASE("Window has default dimensions") {
     Window window;

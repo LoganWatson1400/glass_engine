@@ -1,8 +1,8 @@
 #pragma once
-#include "platform/Window.h"
-#include "rendering/Renderer.h"
-#include "world/objects/Camera.h"
-#include "world/SceneTree.h"
+#include "platform/Window.hh"
+#include "rendering/Renderer.hh"
+#include "world/objects/Camera.hh"
+#include "world/SceneTree.hh"
 #include <SDL2/SDL.h>
 
 class Engine {

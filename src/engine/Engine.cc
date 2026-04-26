@@ -1,6 +1,6 @@
-#include "engine/Engine.h"
-#include "world/objects/MeshInstance.h"
-#include "rendering/Mesh.h"
+#include "engine/Engine.hh"
+#include "world/objects/MeshInstance.hh"
+#include "rendering/Mesh.hh"
 
 float Engine::getDeltaTime()
 {

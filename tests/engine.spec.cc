@@ -1,5 +1,5 @@
 #include <catch2/catch_all.hpp>
-#include "engine/Engine.h"
+#include "engine/Engine.hh"
 
 TEST_CASE("Engine starts with running = true") {
     Engine engine;

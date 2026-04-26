@@ -1,4 +1,4 @@
-#include "rendering/Renderer.h"
+#include "rendering/Renderer.hh"
 #include <GL/glew.h>
 #include <glm/gtc/matrix_transform.hpp>
 

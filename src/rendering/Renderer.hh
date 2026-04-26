@@ -1,10 +1,10 @@
 #pragma once
-#include "world/objects/Camera.h"
-#include "world/objects/MeshInstance.h"
-#include "world/SceneTree.h"
-#include "world/nodes/Node.h"
-#include "rendering/Mesh.h"
-#include "rendering/Shader.h"
+#include "world/objects/Camera.hh"
+#include "world/objects/MeshInstance.hh"
+#include "world/SceneTree.hh"
+#include "world/nodes/Node.hh"
+#include "rendering/Mesh.hh"
+#include "rendering/Shader.hh"
 
 class Renderer {
     Shader shader;

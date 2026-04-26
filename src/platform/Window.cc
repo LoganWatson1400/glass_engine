@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "Window.hh"
 #include <GL/glew.h>
 #include <cstdio>
 
