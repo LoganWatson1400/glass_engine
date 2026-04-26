@@ -17,7 +17,10 @@ TEST_CASE("Engine", "[engine]"){
         REQUIRE(engine.running == true);
     }
 
+    //GL Context not available
     SECTION("Run can be called without crashing") {
+        if(std::getenv("CI"))
+            SKIP("Skipping GL context test in CI");
         Engine engine;
 
         engine.run();

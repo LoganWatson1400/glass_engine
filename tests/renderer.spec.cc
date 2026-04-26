@@ -1,4 +1,6 @@
 #include <catch2/catch_all.hpp>
+#include <cstdlib>
+
 #include "rendering/Renderer.hh"
 #include "world/objects/Camera.hh"
 #include "world/objects/MeshInstance.hh"
@@ -44,6 +46,8 @@ TEST_CASE("Renderer", "[renderer]"){
     // Integration test: requires a real display.
     // Passes trivially in headless environments since init() returns false gracefully.
     SECTION("Initializes with a valid GL context"){
+        if(std::getenv("CI"))
+            SKIP("Skipping GL context test in CI");
         Renderer renderer;
         renderer.init();
         SUCCEED();
