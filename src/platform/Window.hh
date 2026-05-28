@@ -2,27 +2,28 @@
 #ifndef GLASS_ENGINE_WINDOW_HH
 #define GLASS_ENGINE_WINDOW_HH
 
-    #ifndef GLASS_ENGINE_CONFIG_HH
-        #include "config.hh"
-    #endif
+#ifndef GLASS_ENGINE_CONFIG_HH
+#include "../core/config/ConfigLoader.hh"
+#endif
 
-    #include <SDL2/SDL.h>
+#include <SDL2/SDL.h>
 
-    class Window {
-        public:
-            int  height  = DEFAULT_WINDOW_HEIGHT;
-            int  width   = DEFAULT_WINDOW_WIDTH;
-            bool is_open = false;
+class Window {
+  public:
+	int height = core::ConfigLoader::get_int("window.height");
+	int width = core::ConfigLoader::get_int("window.width");
 
-            bool init();        // create window + GL context; returns false on failure
-            void close();
-            bool isOpen() const;
-            void poll();        // process OS events (sets is_open=false on quit/Escape)
-            void swap();        // swap front/back buffers
+	bool is_open = false;
 
-        private:
-            SDL_Window*   sdlWindow = nullptr;
-            SDL_GLContext glContext  = nullptr;
-    }; //CLASS Window
+	bool init(); // create window + GL context; returns false on failure
+	void close();
+	bool isOpen() const;
+	void poll(); // process OS events (sets is_open=false on quit/Escape)
+	void swap(); // swap front/back buffers
 
-#endif //GLASS_ENGINE_WINDOW_HH
+  private:
+	SDL_Window *sdlWindow = nullptr;
+	SDL_GLContext glContext = nullptr;
+}; // CLASS Window
+
+#endif // GLASS_ENGINE_WINDOW_HH
