@@ -17,8 +17,6 @@ static void updateNode(Node& node, float deltaTime)
         updateNode(*child, deltaTime);
 }
 
-/// @brief Updates all nodes in pre-order
-/// @param deltaTime 
 void SceneTree::update(float deltaTime)
 {
     updateNode(root, deltaTime);

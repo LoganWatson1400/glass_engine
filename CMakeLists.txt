@@ -31,6 +31,11 @@ target_include_directories(imgui PUBLIC
 )
 target_link_libraries(imgui PUBLIC SDL2::SDL2 OpenGL::GL)
 
+# Core library
+file(GLOB_RECURSE CORE_SOURCES core/*.cc)
+add_library(glass_core ${CORE_SOURCES})
+target_include_directories(glass_core PUBLIC core)
+
 # Engine library
 file(GLOB_RECURSE ENGINE_SOURCES
     src/engine/*.cc
@@ -41,11 +46,13 @@ file(GLOB_RECURSE ENGINE_SOURCES
 add_library(glass_engine_lib ${ENGINE_SOURCES})
 target_include_directories(glass_engine_lib PUBLIC src)
 target_link_libraries(glass_engine_lib PUBLIC
+    glass_core
     SDL2::SDL2
     OpenGL::GL
     GLEW::GLEW
     glm::glm
 )
+
 
 # Game
 add_executable(glass_engine src/main.cc)
@@ -61,7 +68,7 @@ target_link_libraries(glass_engine PRIVATE glass_engine_lib)
 # Tests
 file(GLOB_RECURSE TEST_SOURCES tests/*.cc)
 add_executable(tests ${TEST_SOURCES})
-target_include_directories(tests PRIVATE editor)
+# target_include_directories(tests PRIVATE editor)
 target_link_libraries(tests PRIVATE glass_engine_lib Catch2::Catch2WithMain)
 
 enable_testing()
