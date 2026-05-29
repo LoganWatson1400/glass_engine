@@ -1,7 +1,13 @@
 #include "platform/Window.hh"
+#include "config/ConfigLoader.hh"
+#include "helpers/config_path.hh"
 #include <catch2/catch_all.hpp>
 
-TEST_CASE("Window", "[window]") {
+struct WindowFixture {
+	WindowFixture() { load_test_configs(); }
+};
+
+TEST_CASE_METHOD(WindowFixture, "Window", "[window]") {
 	SECTION("Has default dimensions") {
 		Window window;
 		REQUIRE(window.width == 800);

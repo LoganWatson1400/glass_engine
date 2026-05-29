@@ -1,8 +1,16 @@
-test:
-	cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug > /dev/null 2>&1 && make -s tests && ./tests
+.PHONY: build config test run reconfig clean
 
 build:
 	mkdir -p build && cd build && cmake .. && make
+
+config:
+	mkdir -p build && cd build && cmake ..
+
+test:
+	cd build && make -s tests && ./tests
+
+run:
+	cd build && make -s glass_engine_game && ./glass_engine_game
 
 reconfig:
 	cd build && cmake ..

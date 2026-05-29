@@ -3,15 +3,15 @@
 #define GLASS_ENGINE_WINDOW_HH
 
 #ifndef GLASS_ENGINE_CONFIG_HH
-#include "../core/config/ConfigLoader.hh"
+#include "config/EngineConfig.hh"
 #endif
 
 #include <SDL2/SDL.h>
 
 class Window {
   public:
-	int height = core::ConfigLoader::get_int("window.height");
-	int width = core::ConfigLoader::get_int("window.width");
+	int height = core::EngineConfig::window_height();
+	int width = core::EngineConfig::window_width();
 
 	bool is_open = false;
 

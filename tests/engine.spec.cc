@@ -1,7 +1,12 @@
 #include "engine/Engine.hh"
 #include <catch2/catch_all.hpp>
+#include "helpers/config_path.hh"
 
-TEST_CASE("Engine", "[engine]") {
+struct WindowFixture {
+	WindowFixture() { load_test_configs(); }
+};
+
+TEST_CASE_METHOD(WindowFixture, "Engine", "[engine]") {
 
 	SECTION("Starts with running set as true") {
 		Engine engine;

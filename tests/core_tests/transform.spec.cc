@@ -1,10 +1,10 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "core/math/Transform.hh"
+#include "math/Transform.hh"
 
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtx/string_cast.hpp>
-#include <catch_amalgamated.hpp>
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("Transform toMatrix", "[transform]") {
 	SECTION("identity transform") {

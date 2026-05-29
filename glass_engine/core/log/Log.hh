@@ -29,17 +29,17 @@ inline void write(Level level, const char *message, const char *file, int line) 
 
 #define LOG_INFO(msg)                                                          \
 	do {                                                                       \
-		::core::log::write(::core::log::Level::Info, msg, __FILE__, __LINE__)  \
+		::core::log::write(::core::log::Level::Info, msg, __FILE__, __LINE__); \
 	} while (0)
 
 #define LOG_WARN(msg)                                                          \
 	do {                                                                       \
-		::core::log::write(::core::log::Level::Warn, msg, __FILE__, __LINE__)  \
+		::core::log::write(::core::log::Level::Warn, msg, __FILE__, __LINE__); \
 	} while (0)
 
 #define LOG_ERROR(msg)                                                         \
 	do {                                                                       \
-		::core::log::write(::core::log::Level::Error, msg, __FILE__, __LINE__) \
+		::core::log::write(::core::log::Level::Error, msg, __FILE__, __LINE__);\
 	} while (0)
 
 #endif // GLASS_ENGINE_LOG_HH

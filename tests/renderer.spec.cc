@@ -18,13 +18,18 @@ TEST_CASE("Renderer", "[renderer]") {
 	}
 
 	SECTION("Draws empty scene without crashing") {
-		Renderer renderer;
-		SceneTree scene;
-		Camera camera;
+    	Renderer renderer;
 
-		renderer.clear();
-		renderer.draw(scene, camera, 800, 600);
-		SUCCEED();
+    	if (!renderer.init())
+        	SKIP("No GL context available");
+
+    	SceneTree scene;
+    	Camera camera;
+
+    	renderer.clear();
+    	renderer.draw(scene, camera, 800, 600);
+
+    	SUCCEED();
 	}
 
 	SECTION("Draws scene with a MeshInstance without crashing") {

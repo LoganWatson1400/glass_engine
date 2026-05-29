@@ -2,7 +2,7 @@
 #ifndef GLASS_ENGINE_NODE3D_HH
 #define GLASS_ENGINE_NODE3D_HH
 
-#include "../core/math/Transform.hh"
+#include "math/Transform.hh"
 #include "world/nodes/Node.hh"
 #include <glm/glm.hpp>
 

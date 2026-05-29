@@ -33,11 +33,18 @@ void main()
 // ---------------------------------------------------------------------------
 
 bool Renderer::init() {
+	if (!glewIsSupported("GL_VERSION_3_3")) {
+		ready = false;
+		return false;
+	}
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	if (!shader.compile(VERT_SRC, FRAG_SRC))
+	if (!shader.compile(VERT_SRC, FRAG_SRC)) {
+		ready = false;
 		return false;
+	}
 
 	ready = true;
 	return true;

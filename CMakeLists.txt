@@ -31,45 +31,48 @@ target_include_directories(imgui PUBLIC
 )
 target_link_libraries(imgui PUBLIC SDL2::SDL2 OpenGL::GL)
 
-# Core library
-file(GLOB_RECURSE CORE_SOURCES core/*.cc)
-add_library(glass_core ${CORE_SOURCES})
-target_include_directories(glass_core PUBLIC core)
-
-# Engine library
-file(GLOB_RECURSE ENGINE_SOURCES
-    src/engine/*.cc
-    src/world/*.cc
-    src/rendering/*.cc
-    src/platform/*.cc
+# Engine library (core + framework)
+file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_SOURCE_DIR}/glass_engine/*.cc
 )
-add_library(glass_engine_lib ${ENGINE_SOURCES})
-target_include_directories(glass_engine_lib PUBLIC src)
+add_library(glass_engine_lib STATIC ${ENGINE_SOURCES})
+target_include_directories(glass_engine_lib PUBLIC
+    ${CMAKE_SOURCE_DIR}/glass_engine
+    ${CMAKE_SOURCE_DIR}/glass_engine/core
+    ${CMAKE_SOURCE_DIR}/glass_engine/framework
+)
 target_link_libraries(glass_engine_lib PUBLIC
-    glass_core
     SDL2::SDL2
     OpenGL::GL
     GLEW::GLEW
     glm::glm
 )
 
-
 # Game
-add_executable(glass_engine src/main.cc)
-target_link_libraries(glass_engine PRIVATE glass_engine_lib)
+file(GLOB_RECURSE GAME_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_SOURCE_DIR}/game_project/game/*.cc
+)
+add_executable(glass_engine_game
+    ${CMAKE_SOURCE_DIR}/game_project/main.cc
+    ${GAME_SOURCES}
+)
+target_link_libraries(glass_engine_game PRIVATE glass_engine_lib)
 
 # Editor
-# file(GLOB_RECURSE EDITOR_SOURCES editor/*.cc)
+# file(GLOB_RECURSE EDITOR_SOURCES ${CMAKE_SOURCE_DIR}/editor/*.cc)
 # add_executable(glass_editor ${EDITOR_SOURCES})
-# target_include_directories(glass_editor PRIVATE editor)
 # target_link_libraries(glass_editor PRIVATE glass_engine_lib imgui)
 
-
 # Tests
-file(GLOB_RECURSE TEST_SOURCES tests/*.cc)
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_SOURCE_DIR}/tests/*.cc
+)
 add_executable(tests ${TEST_SOURCES})
-# target_include_directories(tests PRIVATE editor)
 target_link_libraries(tests PRIVATE glass_engine_lib Catch2::Catch2WithMain)
 
 enable_testing()
 add_test(NAME all_tests COMMAND tests)
+target_compile_definitions(tests PRIVATE
+    ENGINE_CONFIG_PATH="${CMAKE_SOURCE_DIR}/game_project/config/engine_config.cfg"
+    PROJECT_CONFIG_PATH="${CMAKE_SOURCE_DIR}/game_project/config/project_config.cfg"
+)
