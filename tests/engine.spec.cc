@@ -1,40 +1,45 @@
-#include <catch2/catch_all.hpp>
 #include "engine/Engine.hh"
+#include <catch2/catch_all.hpp>
+#include "helpers/config_path.hh"
 
-TEST_CASE("Engine", "[engine]"){
+struct WindowFixture {
+	WindowFixture() { load_test_configs(); }
+};
 
-    SECTION("Starts with running set as true") {
-        Engine engine;
+TEST_CASE_METHOD(WindowFixture, "Engine", "[engine]") {
 
-        REQUIRE(engine.running == true);
-    }
+	SECTION("Starts with running set as true") {
+		Engine engine;
 
-    SECTION("Update can be called without crashing") {
-        Engine engine;
+		REQUIRE(engine.running == true);
+	}
 
-        engine.update();
+	SECTION("Update can be called without crashing") {
+		Engine engine;
 
-        REQUIRE(engine.running == true);
-    }
+		engine.update();
 
-    //GL Context not available
-    SECTION("Run can be called without crashing") {
-        if(std::getenv("CI"))
-            SKIP("Skipping GL context test in CI");
-        Engine engine;
+		REQUIRE(engine.running == true);
+	}
 
-        engine.run();
+	// GL Context not available
+	SECTION("Run can be called without crashing") {
+		if (std::getenv("CI"))
+			SKIP("Skipping GL context test in CI");
+		Engine engine;
 
-        SUCCEED();
-    }
+		engine.run();
 
-    // SECTION("updates propogate down the scene tree"){
-    //     Engine engine;
+		SUCCEED();
+	}
 
-    //     auto child = std::make_unique<GameObject>();
-    //     GameObject* childPtr = child.get();
-    //     engine.scene.addChild(std::move(child));
+	// SECTION("updates propogate down the scene tree"){
+	//     Engine engine;
 
-    //     REQUIRE(engine.update() == true);
-    // }
+	//     auto child = std::make_unique<GameObject>();
+	//     GameObject* childPtr = child.get();
+	//     engine.scene.addChild(std::move(child));
+
+	//     REQUIRE(engine.update() == true);
+	// }
 }
